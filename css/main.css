@@ -1,0 +1,32 @@
+.logo{
+    margin: 20px;
+}
+.top-btns{
+    padding-top: 30px;
+}
+.warning-item span{
+    margin-left: 20px;
+}
+.config button{
+    margin-right:30px;
+}
+.config .threshold{
+    width: 60px;
+}
+.market tbody{
+    font-size: 14px;
+}
+.market tbody span.label{
+    font-size: 14px;
+}
+.logging .alert span{
+    margin: 30px;
+}
+.status span{
+    margin-left:20px;
+    margin-right:50px;
+}
+.status{
+    color:#aaa;
+    margin-bottom: 30px;
+}

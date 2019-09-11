@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>瞅币报警器</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 标题 -->
+        <div class="row">
+            <div class="col-md-2 text-center">
+                <img class="logo" src="icon.gif" width="80px" height="80px" alt="">
+            </div>
+            <div class="col-md-6">
+                <div class="page-header">
+                    <h1>瞅币 —— 异动监控</h1>
+                </div>
+            </div>
+            <div class="col-md-4 top-btns">
+                <button class="btn btn-default" id="settings-toggle">开/关 设置面板</button>
+                <button class="btn btn-default" id="alarm-toggle">声音提醒：已关闭</button>
+            </div>
+        </div>
+        <!-- 当前运行状态 -->
+        <div class="status">
+            <p>
+                开始运行时间<span class="running-begin"></span>
+                USD_CNY 汇率<span class="ex-rate"></span>
+                汇率更新时间<span class="ex-rate-time"></span>
+            </p>
+            <p>
+                远程请求成功次数<span class="req-success"></span>
+                远程请求失败次数<span class="req-error"></span>
+                当前时区设置(设置错误会导致获取失败)<span class="time-zone"></span>
+            </p>
+
+        </div>
+        <!-- 设置 -->
+        <div class="panel panel-info config" style="display: none">
+            <div class="panel-heading">
+                <h3 class="panel-title">设置</h3>
+            </div>
+            <div class="panel-body">
+                <p>监控种类</p>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>开启监控</th>
+                            <th>币种</th>
+                            <th>k线周期</th>
+                            <th>报警振幅阈值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div class="form-inline">
+                    <label for="refresh-delay">刷新间隔(秒)</label>
+                    <input type="number" class="form-control" id="refresh-interval" min="5" max="30">
+                </div>
+                <div class="row text-right">
+                    <button type="button" id="save-settings" class="btn btn-sm btn-success">保存修改</button>
+                    <button type="button" id="reset-settings" class="btn btn-sm">重置为当前状态</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- 报警条 -->
+        <div class="warnings">
+            <!-- <div class="alert alert-success warning-item" role="alert">
+                <h3><a href="">BTC-USDT</a> 发生异动，180秒K线振幅破2%</h3>
+                <p>报警时间：<span class="warn-time">2019-09-08 23：14：33</span></p>
+                <p>报警时价格(USDT)：12392.38</p>
+                <p>报警时价格(RMB)：893458</p>
+                <p>当前周期状态：<span class="usdt">$USDT:12333.42</span><span class="rmb">RMB:124492.52</span><span
+                        class="high">HIGH:13239</span><span class="low">LOW: 12389</span></p>
+            </div>
+            <div class="alert alert-success warning-item" role="alert">
+                <h3><a href="">BTC-USDT</a> 发生异动，180秒K线振幅破2%</h3>
+                <p>报警时间：2019-09-08 23：14：33</p>
+                <p>报警时价格(USDT)：12392.38</p>
+                <p>报警时价格(RMB)：893458</p>
+                <p>当前周期状态：<span class="usdt">$USDT:12333.42</span><span class="rmb">RMB:124492.52</span><span
+                        class="high">HIGH:13239</span><span class="low">LOW: 12389</span><span class="amplitude">振幅:2.5%
+                </p>
+            </div> -->
+        </div>
+        <div class="market">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>币种</th>
+                        <th>最新价USDT/CNY</th>
+                        <th>24H涨跌幅</th>
+                        <th>24H最高</th>
+                        <th>24H最低</th>
+                        <th>行情图表</th>
+                        <th>监控振幅</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr class="MARKT-BTC-USDT">
+                        <td>BTC-USDT</td>
+                        <td>10000.99 / 70000.32</td>
+                        <td><span class="label label-success">+3.2%</span></td>
+                        <td>10100/69000</td>
+                        <td>9000/63000</td>
+                        <td><a href="">查看</a></td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>
+        <!-- 历史记录 -->
+
+        <div class="panel panel-default logging">
+            <div class="panel-heading">
+                <h3 class="panel-title">报警记录</h3>
+            </div>
+            <div class="panel-body">
+                <!-- <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>BTC-USDT</strong> <span>2019-09-08 12:33:05</span><span>在180秒周期线上振幅超过2%</span>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+    <audio>
+        <source src="alarm.mp3" type="audio/wav">
+    </audio>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/coin.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+</body>
+
+</html>
