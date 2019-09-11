@@ -123,7 +123,7 @@ class WarningBar {
     init() {
         let c = this.coin
         let html = `
-        <h3 class="warning-title"><a href="${c.marketUrl}">${c.coinName}</a> 发生异动，<span class="granularity">
+        <h3 class="warning-title"><a target="_blank" href="${c.marketUrl}">${c.coinName}</a> 发生异动，<span class="granularity">
         </span>分种K线振幅破<span class="threshold"></span>%</h3>
         <p>报警时间：<span class="warn-time"></span></p>
         <p>报警时价格(USDT)：<span class="warn-usdt"></span></p>
