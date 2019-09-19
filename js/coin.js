@@ -24,7 +24,7 @@ class Coin {
 
         // 市场行情地址
         this.marketUrl = SETTINGS.URLS.base +
-            SETTINGS.URLS.market.replace('<instrument_underline>', this.coinNameUnderline)
+            SETTINGS.URLS.market.replace('<instrument_underline>', this.coinNameUnderline.toLowerCase())
 
         this.warning = new WarningBar(this, warningElement)
         this.settingBar = new SettingBar(this, settingElement)
